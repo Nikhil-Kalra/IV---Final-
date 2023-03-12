@@ -1,17 +1,18 @@
 import streamlit as st
-import streamlit.components.v1 as components 
+import streamlit.components.v1 as components
 from PIL import Image
-import os 
-import matplotlib.pyplot as plt 
+import os
+import matplotlib.pyplot as plt
+from streamlit_d3graph import d3graph
 
 # Using object notation
 
 option = st.sidebar.selectbox(
     "Projects",
-    ("About","Tableau", "Gephi", "Python" , "D3")
+    ("About", "Tableau", "Gephi", "Python", "D3")
 )
 
-if option == "About" : 
+if option == "About":
     st.title("18CSE301J-RA2011003011058 - Nikhil")
     st.text("")
     st.text("")
@@ -19,7 +20,7 @@ if option == "About" :
     st.text("")
     st.text("")
     st.write("The IPL auction is an annual event where teams participating in the Indian Premier League (IPL) bid for players to add to their squad for the upcoming season. The auction for the 2022 IPL was held on February 12, 2022, in Bengaluru, India. A total of 292 players were included in the auction, out of which 123 were bought by the eight participating teams.")
-    st.text("")     
+    st.text("")
     st.text("")
     st.text("")
     st.text("")
@@ -27,7 +28,7 @@ if option == "About" :
 
     st.image("https://english.cdn.zeenews.com/sites/default/files/styles/zm_700x400/public/2022/02/01/1010809-ipl-2022-auction.jpg")
 
-if option == "Tableau": 
+if option == "Tableau":
 
     st.title("Tableau Project")
 
@@ -73,9 +74,9 @@ if option == "Tableau":
             var scriptElement = document.createElement('script'); 
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-        </script> """, height=2000,width=4000)
-    
-if option == "Gephi" : 
+        </script> """, height=2000, width=4000)
+
+if option == "Gephi":
     st.title("Gephi")
     st.text("")
     st.text("")
@@ -91,108 +92,214 @@ if option == "Gephi" :
 
     st.image("gephi-2.png")
 
-if option == "Python" : 
+if option == "Python":
     st.title("Python")
 
-    option = st.selectbox("TypeS of Players Bought by Teams in IPL 2022", 
-                 ("CSK", "DC" , "GT","KKR","MI","PK","SH","RCB","RR"))
-    
-    if option == "CSK" :
+    option = st.selectbox("TypeS of Players Bought by Teams in IPL 2022",
+                          ("CSK", "DC", "GT", "KKR", "MI", "PK", "SH", "RCB", "RR"))
+
+    if option == "CSK":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [36, 32, 20, 12]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
-    if option == "DC" :
+    if option == "DC":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [37.5, 29.2, 20.8, 12.5]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
-    if option == "GT" :
+    if option == "GT":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [36.4, 36.4, 18.2, 9.09]
-        explode = (0.1,0.1, 0, 0)  
+        explode = (0.1, 0.1, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        st.pyplot(fig1) 
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
+        st.pyplot(fig1)
 
-    if option == "RR" :
+    if option == "RR":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [25, 41.7, 20.8, 12.5]
-        explode = (0, 0.1, 0, 0)  
+        explode = (0, 0.1, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
-    
-    if option == "RCB" :
+
+    if option == "RCB":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [40.9, 31.8, 13.6, 13.6]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
-    if option == "SH" :
+    if option == "SH":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [26.1, 39.1, 21.7, 13]
-        explode = (0, 0.1, 0, 0)  
+        explode = (0, 0.1, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
-    if option == "PK" :
+    if option == "PK":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [44, 32, 12, 12]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
-    
-    if option == "MI" :
+
+    if option == "MI":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [44, 28, 20, 6]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
-    if option == "KKR" :
+    if option == "KKR":
         labels = 'All Rounder', 'Bowler', 'Batsman', 'WicketKeeper'
         sizes = [40, 28, 20, 12]
-        explode = (0.1, 0, 0, 0)  
+        explode = (0.1, 0, 0, 0)
 
         fig1, ax1 = plt.subplots()
         ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                 shadow=True, startangle=90)
-        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # Equal aspect ratio ensures that pie is drawn as a circle.
+        ax1.axis('equal')
         st.pyplot(fig1)
 
+if option == "D3":
+
+    st.title("D3.js Project")
+
+    components.html(
+        """
+        
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D3.js Tutorial</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+	color:white;
+    }
+
+    .rect:hover { opacity: 0.5; }
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <div id="d3-container" />
+  </div>
+  <script type="text/javascript">
+	const data = [
+  { name: 'DC', score: 50 },
+  { name: 'RR', score: 45 },
+  { name: 'RCB', score: 51 },
+  { name: 'SRH', score: '21'},
+  { name: 'MI', score: 70 },
+  { name: 'GT', score: 35 },
+  { name: 'CSK', score: 48 },
+  { name: 'LSG', score: 29 },
+  { name: 'KKR', score: 39 },
+  { name: 'PBKS', score: 46 },
+  
+];
+
+const width = 800;
+const height = 600;
+const margin = { top: 50, bottom: 50, left: 50, right: 50 };
+
+const svg = d3.select('#d3-container')
+  .append('svg')
+  .attr('width', width - margin.left - margin.right)
+  .attr('height', height - margin.top - margin.bottom)
+  .attr("viewBox", [0, 0, width, height]);
+
+const x = d3.scaleBand()
+  .domain(d3.range(data.length))
+  .range([margin.left, width - margin.right])
+  .padding(0.3)
+
+const y = d3.scaleLinear()
+  .domain([0, 100])
+  .range([height - margin.bottom, margin.top])
+
+svg
+  .append("g")
+  .attr("fill", 'royalblue')
+  .selectAll("rect")
+  .data(data.sort((a, b) => d3.descending(a.score, b.score)))
+  .join("rect")
+    .attr("x", (d, i) => x(i))
+    .attr("y", d => y(d.score))
+    .attr('title', (d) => d.score)
+    .attr("class", "rect")
+    .attr("height", d => y(0) - y(d.score))
+    .attr("width", x.bandwidth());
+
+function yAxis(g) {
+  g.attr("transform", `translate(${margin.left}, 0)`)
+    .call(d3.axisLeft(y).ticks(null, data.format))
+    .padding(1)
+    .attr("font-size", '20px')
+}
+
+function xAxis(g) {
+  g.attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).tickFormat(i => data[i].name))
+    .attr("font-size", '20px')
+}
+
+svg.append("g").call(xAxis);
+svg.append("g").call(yAxis);
+svg.node();
+</script>
+</body>
+</html>
+        
+        
+X-Axis- Teams
+Y-Axis- Fund Spent in Crs     
+        
+        """ ,height=650)
