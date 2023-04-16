@@ -46,6 +46,8 @@ if option == "Assignment-1" :
             file_name=filename
         )
     
+    components.html("""<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self' blob:; style-src 'self'; frame-src 'self'">""")
+
     with open(filename, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
