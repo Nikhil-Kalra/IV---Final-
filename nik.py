@@ -10,10 +10,8 @@ import base64
 
 option = st.sidebar.selectbox(
     "Projects",
-    ("About", "Tableau",  "Python", "D3")
+    ("About","Assignment-1", "Tableau", "Gephi", "Python", "D3")
 )
-
-
 
 if option == "About":
     st.title("18CSE301J-RA2011003011058 - Nikhil")
@@ -31,7 +29,33 @@ if option == "About":
 
     st.image("https://english.cdn.zeenews.com/sites/default/files/styles/zm_700x400/public/2022/02/01/1010809-ipl-2022-auction.jpg")
 
+if option == "Assignment-1" : 
+    st.title("Assignment-1")
 
+    st.text("")
+    st.text("")
+    filename = "Information_Visualization_report (12) (1).pdf"
+
+    with open(filename, "rb") as f:
+        data = f.read()
+        st.download_button(
+            label="Download Assignment-1 PDF",
+            data=data,
+            file_name=filename
+        )
+
+    components.html("""<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self' blob:; style-src 'self'; frame-src 'self'">""")
+
+    with open(filename, "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+
+    # Embedding PDF in HTML
+
+    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+
+    # Displaying File
+    st.markdown(pdf_display, unsafe_allow_html=True)
+	
 if option == "Tableau":
 
     st.title("Tableau Project")
@@ -79,6 +103,23 @@ if option == "Tableau":
             scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
             vizElement.parentNode.insertBefore(scriptElement, vizElement);                
         </script> """, height=2000, width=4000)
+
+if option == "Gephi":
+    st.title("Gephi")
+    st.text("")
+    st.text("")
+    filename = "gephi-2.pdf"
+
+    with open(filename, "rb") as f:
+        data = f.read()
+        st.download_button(
+            label="Download GEPHI PDF",
+            data=data,
+            file_name=filename
+        )
+
+    st.image("gephi-2.png")
+
 
 if option == "Python":
     st.title("Python")
